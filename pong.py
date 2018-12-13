@@ -3,12 +3,12 @@ from time import sleep
 from random import randint
 sense = SenseHat()
 sense.clear()
-blank = (0,0,0)
 white = (255,255,255)
 blue = (0,0,255)
 red = (255,0,0)
 green = (0,255,0)
 purple = (255,255,0)
+cyan = (0,255,255)
 bat_y = 4
 ball_position = [3,3]
 ball_velocity = [1,1]
