@@ -1,10 +1,14 @@
 from sense_hat import SenseHat
 from time import sleep
+from random import randint
 sense = SenseHat()
 sense.clear()
+blank = (0,0,0)
 white = (255,255,255)
 blue = (0,0,255)
 red = (255,0,0)
+green = (0,255,0)
+purple = (255,255,0)
 bat_y = 4
 ball_position = [3,3]
 ball_velocity = [1,1]
@@ -20,7 +24,7 @@ def move_up(event):
 
 def move_down(event):
     global bat_y
-    if event.action == 'pressed' and bat_y > 1:
+    if event.action == 'pressed' and bat_y < 7:
         bat_y += 1
 
 def draw_ball():
@@ -34,6 +38,8 @@ def draw_ball():
     if ball_position[0] == 1 and (bat_y - 1) <= ball_position[1] <= (bat_y + 1):
         ball_velocity[0] = -ball_velocity[0]
     if ball_position[0] == 0:
+        sleep(1)
+        sense.set_pixel(ball_position[0], ball_position[1], blue)
         sense.clear(red)
         sleep(0.25)
         sense.clear()
@@ -46,7 +52,7 @@ def draw_ball():
         sleep(0.25)
         sense.clear()
         sleep(0.25)
-        sense.show_message ('You Lose! Play Again?')
+        sense.show_message ('You Lose!')
         sense.clear()
 
 while True:
