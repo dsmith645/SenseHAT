@@ -24,7 +24,7 @@ def move_up(event):
 
 def move_down(event):
     global bat_y
-    if event.action == 'pressed' and bat_y < 7:
+    if event.action == 'pressed' and bat_y < 6:
         bat_y += 1
 
 def draw_ball():
@@ -37,6 +37,14 @@ def draw_ball():
         ball_velocity[1] = -ball_velocity[1]
     if ball_position[0] == 1 and (bat_y - 1) <= ball_position[1] <= (bat_y + 1):
         ball_velocity[0] = -ball_velocity[0]
+
+while True:
+    sense.clear(0, 0, 0)
+    draw_bat()
+    draw_ball()
+    sleep(0.25)
+    sense.stick.direction_up= move_up
+    sense.stick.direction_down = move_down
     if ball_position[0] == 0:
         sleep(1)
         sense.set_pixel(ball_position[0], ball_position[1], blue)
@@ -52,13 +60,6 @@ def draw_ball():
         sleep(0.25)
         sense.clear()
         sleep(0.25)
-        sense.show_message ('You Lose!')
+        sense.show_message('You Lose!', scroll_speed = 0.05)
         sense.clear()
-
-while True:
-    sense.clear(0, 0, 0)
-    draw_bat()
-    draw_ball()
-    sleep(0.25)
-    sense.stick.direction_up= move_up
-    sense.stick.direction_down = move_down
+        break;
