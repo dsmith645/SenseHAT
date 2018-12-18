@@ -7,7 +7,7 @@ sense.clear()
 white = (255,255,255)
 red = (255,0,0)
 ball_colors = {1 : (0,0,255), 2 : (255,0,0), 3 : (0,255,0), 4 : (255,0,255),
-               5 : (0,255,255), 6 : (0,255,255)}
+               5 : (0,255,255), 6 : (255,255,0)}
 bat_y = 4
 ball_position = [3,3]
 ball_velocity = [1,1]
@@ -27,11 +27,10 @@ def move_down(event):
         bat_y += 1
 
 def draw_ball():
-    sense.set_pixel(ball_position[0], ball_position[1], ball_colors[1])
+    sense.set_pixel(ball_position[0], ball_position[1], ball_colors[random.randint(1,6)])
     ball_position[0] += ball_velocity[0]
     if ball_position[0] == 7 or ball_position[0] == 0:
         ball_velocity[0] = -ball_velocity[0]
-        sense.set_pixel(ball_position[0], ball_position[1], ball_colors[random.randint(1,6)])
     ball_position[1] += ball_velocity[1]
     if ball_position[1] == 7 or ball_position[1] == 0:
         ball_velocity[1] = -ball_velocity[1]
