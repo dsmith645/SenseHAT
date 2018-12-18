@@ -59,6 +59,6 @@ while True:
         sleep(0.25)
         sense.clear()
         sleep(0.25)
-        sense.show_message('You Lose!', scroll_speed = 0.05)
+        sense.show_message('You Lose! Run to Play Again', scroll_speed = 0.05)
         sense.clear()
         break;
