@@ -6,8 +6,10 @@ sense = SenseHat()
 sense.clear()
 white = (255,255,255)
 red = (255,0,0)
+blank = (0,0,0)
 ball_colors = {1 : (0,0,255), 2 : (255,0,0), 3 : (0,255,0), 4 : (255,0,255),
-               5 : (0,255,255), 6 : (255,255,0)}
+               5 : (0,255,255), 6 : (255,255,0), 7 : (255,165,0), 8 : (160,32,240), 9 : (165,42,42),
+               10 : (255,153,255), 11 : (255,102,255), 12 : (160,160,160)}
 bat_y = 4
 ball_position = [3,3]
 ball_velocity = [1,1]
@@ -27,7 +29,7 @@ def move_down(event):
         bat_y += 1
 
 def draw_ball():
-    sense.set_pixel(ball_position[0], ball_position[1], ball_colors[random.randint(1,6)])
+    sense.set_pixel(ball_position[0], ball_position[1], ball_colors[random.randint(1,12)])
     ball_position[0] += ball_velocity[0]
     if ball_position[0] == 7 or ball_position[0] == 0:
         ball_velocity[0] = -ball_velocity[0]
@@ -45,8 +47,12 @@ while True:
     sense.stick.direction_up= move_up
     sense.stick.direction_down = move_down
     if ball_position[0] == 0:
-        sleep(1)
-        sense.set_pixel(ball_position[0], ball_position[1], ball_colors[random.randint(1,6)])
+        sleep(0.7)
+        sense.set_pixel(0, bat_y - 1, blank)
+        sense.set_pixel(0, bat_y + 1, blank)
+        sleep(0.7)
+        sense.set_pixel(0, bat_y, blank)
+        sleep(0.7)
         sense.clear(red)
         sleep(0.25)
         sense.clear()
@@ -59,6 +65,6 @@ while True:
         sleep(0.25)
         sense.clear()
         sleep(0.25)
-        sense.show_message('You Lose! Run to Play Again', scroll_speed = 0.05)
+        sense.show_message('You lose! Run program to play again!', scroll_speed = 0.05)
         sense.clear()
         break;
